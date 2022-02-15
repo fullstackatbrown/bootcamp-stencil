@@ -4,17 +4,19 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 const app = express();
-const port = 8080; // default port to listen
+const port = 8080; // Default port to listen on.
 let db: Db;
 
-// middleware
+// Middleware.
 app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:3000'
 }))
 app.use(bodyParser.urlencoded({extended: false}));
 
-// Route definitions
+// ====================================================================
+// Routes
+// ====================================================================
 
 // TODO: Implement a route handler that returns a list of all posts, ordered by date created.
 app.get("/posts", async (req, res) => {
@@ -67,9 +69,9 @@ app.delete("/posts/:postID/comments/:commentID", async (req, res) => {
 });
 
 
-// ... add more endpoints here!
+// TODO: add more endpoints here!
 
-// start the Express server
+// Start the Express server.
 function start() {
     const client = new MongoClient(process.env.ATLAS_URI);
     client.connect()
